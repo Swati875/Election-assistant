@@ -1,0 +1,16 @@
+runtime: nodejs20
+env_variables:
+  # Replace with your actual Gemini API Key when deploying, or set it via Secret Manager
+  # GEMINI_API_KEY: "your-api-key-here"
+
+handlers:
+  - url: /api/.*
+    script: auto
+
+  - url: /(.*\..+)$
+    static_files: dist/\1
+    upload: dist/(.*\..+)$
+
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
